@@ -37,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This is my first React project about restaurants",
+  "main": "index.js",
+  "repository": "https://github.com/KUBAHO3/React-components.gif",
+  "author": "KUBAHO3 <kubaholinne@gmail.com>",
+  "license": "MIT"
 }
