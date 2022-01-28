@@ -1,21 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishDetail extends Component {
-    constructor(props) {
-        super(props);
 
-        console.log(props);
-
-        // stores properties of this component
-        this.state = {
-            selectedDishDetail: this.props.dsdetail
-        };
-
-
-    }
-
-    renderDish(dish) {
+    function RenderDish({dish}) {
 
         if (dish != null) {
             return (
@@ -36,7 +23,7 @@ class DishDetail extends Component {
         }
     }
 
-    renderComments(comments){
+    function RenderComments({comments}){
         if (comments == null) {
             return (<div></div>)
         }
@@ -47,15 +34,8 @@ class DishDetail extends Component {
                     <p>{comment.comment}</p>
                     <p>-- {comment.author},
                         &nbsp;
-                        {new Intl.DateTimeFormat('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: '2-digit'
-                        }).format(new Date(comment.date))}
-                    </p>
+                        {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </p>
                 </li>
-                
-                
             )
         })
         return (
@@ -69,32 +49,24 @@ class DishDetail extends Component {
             </div>
         )
     }
-
-
-
-
-
-    render(){
-        const dish = this.props.dish
+    const Dishdetail =(props)=>{
+        const dish = props.dish
 
         console.log(dish);
 
         if (dish == null) {
             return (<div></div>);
         }
-
-        const dishItem = this.renderDish(dish);
-        const dishComment = this.renderComments(dish.comments);
-
+       
         return (
+            <div className="container">
             <div className='row'>
-                {dishItem}
-                {dishComment}
+            <>
+        <RenderDish dish={props.dish}/>
+        <RenderComments comments={props.dish.comments}/>
+        </>
+            </div>
             </div>
         )
     }
-
-
-}
-
-    export default DishDetail;
+    export default Dishdetail;
